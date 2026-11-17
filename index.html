@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ee">
+  <meta name="description" content="The Sidekicks is your external digital team. We help organise the digital side of your business: websites, content, social media, maps, analytics and business processes.">
+  <title>The Sidekicks — your external digital team</title>
+  <style>
+    :root {
+      --paper: #f7f4ee;
+      --paper-deep: #eee9df;
+      --ink: #252521;
+      --muted: #706f67;
+      --yellow: #f5c64c;
+      --yellow-light: #f9d875;
+      --line: rgba(37, 37, 33, .14);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --max: 1240px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; font: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 64px)); margin-inline: auto; }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(247,244,238,.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(37,37,33,.08); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: .11em; font-weight: 750; white-space: nowrap; }
+    .brand-mark { width: 30px; height: 30px; display: grid; place-items: center; border: 1.5px solid var(--ink); border-radius: 50%; }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .nav-links { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); font-size: 13px; color: #55544f; }
+    .nav-links a:hover, .footer-links a:hover { color: var(--ink); }
+    .pill { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 0 20px; border: 1px solid var(--ink); border-radius: 999px; background: var(--ink); color: white; font-size: 13px; transition: transform .2s, background .2s, color .2s; cursor: pointer; }
+    .pill:hover { transform: translateY(-2px); background: transparent; color: var(--ink); }
+    .pill-light { background: transparent; color: var(--ink); }
+    .pill-light:hover { background: var(--ink); color: white; }
+    .arrow { font-size: 17px; line-height: 0; }
+
+    .hero { position: relative; overflow: hidden; min-height: 700px; display: grid; align-items: center; padding: 82px 0 112px; isolation: isolate; }
+    .hero::before { content: ""; position: absolute; z-index: -2; inset: 0 0 10%; background: radial-gradient(ellipse at 68% 37%, rgba(255,231,157,.98) 0, rgba(247,201,79,.88) 35%, rgba(245,198,76,.78) 57%, rgba(247,244,238,0) 78%), linear-gradient(115deg, #f7f4ee 4%, #f5c64c 50%, #f7f4ee 100%); }
+    .hero::after { content: ""; position: absolute; z-index: -1; width: 140%; height: 180px; left: -20%; bottom: -94px; background: var(--paper); border-radius: 50% 50% 0 0 / 70% 70% 0 0; }
+    .hero-grid { display: grid; grid-template-columns: 1fr .92fr; align-items: center; gap: 34px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #535148; font-size: 11px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 670px; margin: 25px 0 24px; font: 400 clamp(54px, 7vw, 96px)/.98 var(--serif); letter-spacing: -.065em; }
+    h1 em { font-weight: 400; }
+    .hero-copy { max-width: 480px; color: #424139; font-size: clamp(16px, 1.5vw, 19px); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .hero-art { position: relative; min-height: 450px; display: grid; place-items: center; }
+    .orbit { position: absolute; width: min(37vw, 420px); aspect-ratio: 1; border: 1px solid rgba(37,37,33,.17); border-radius: 50%; transform: rotate(-19deg) scaleY(.68); }
+    .orbit::before, .orbit::after { content: ""; position: absolute; border: 1px solid rgba(37,37,33,.12); border-radius: 50%; inset: 23px -21px; }
+    .orbit::after { inset: 47px -41px; }
+    .system-card { position: relative; width: min(100%, 410px); aspect-ratio: 1.17; padding: 22px; border: 1px solid rgba(255,255,255,.72); border-radius: 24px; background: rgba(250,248,241,.77); box-shadow: 0 24px 70px rgba(91,70,19,.15); transform: rotate(3deg); backdrop-filter: blur(12px); }
+    .card-top { display: flex; justify-content: space-between; align-items: center; color: #77746b; font-size: 10px; letter-spacing: .11em; text-transform: uppercase; }
+    .window-dots { display: flex; gap: 5px; }
+    .window-dots i { display: block; width: 6px; height: 6px; background: #a8a499; border-radius: 50%; }
+    .diagram { position: relative; display: grid; grid-template-columns: 1fr 1.1fr 1fr; grid-template-rows: 1fr 1fr; gap: 12px; height: calc(100% - 40px); align-items: center; padding-top: 18px; }
+    .node { position: relative; z-index: 1; display: grid; place-items: center; min-height: 68px; padding: 9px 6px; text-align: center; border: 1px solid rgba(37,37,33,.14); border-radius: 15px; background: #fbfaf6; box-shadow: 0 6px 14px rgba(52,42,13,.05); }
+    .node svg { width: 23px; height: 23px; margin-bottom: 5px; stroke: #545148; }
+    .node span { font-size: 9px; line-height: 1.2; font-weight: 650; }
+    .node-hub { grid-column: 2; grid-row: 1 / 3; width: 100%; min-height: 112px; border: 0; border-radius: 50%; background: var(--yellow); }
+    .node-hub svg { width: 32px; height: 32px; }
+    .connector { position: absolute; z-index: 0; inset: 22% 12%; width: 76%; height: 58%; overflow: visible; }
+    .float-tag { position: absolute; display: flex; align-items: center; gap: 9px; padding: 12px 15px; border-radius: 13px; background: #fffdf8; box-shadow: 0 12px 30px rgba(59,48,16,.12); font-size: 11px; font-weight: 650; }
+    .float-tag span { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; background: var(--yellow-light); font-size: 13px; }
+    .tag-one { top: 11%; left: -2%; transform: rotate(-7deg); }
+    .tag-two { right: -4%; bottom: 16%; transform: rotate(5deg); }
+
+    section { padding: 112px 0; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 32px; margin-bottom: 44px; }
+    .section-heading h2 { max-width: 700px; margin: 12px 0 0; font: 400 clamp(40px, 5.2vw, 68px)/1.04 var(--serif); letter-spacing: -.055em; }
+    .section-heading p { max-width: 330px; margin: 0 0 5px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .about { padding-top: 66px; }
+    .about-panel { display: grid; grid-template-columns: .9fr 1.1fr; gap: 9%; padding: clamp(30px, 6vw, 76px); border-radius: 28px; background: #eae6dc; }
+    .about-aside { display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; }
+    .about-symbol { width: 96px; height: 96px; display: grid; place-items: center; border: 1px solid rgba(37,37,33,.28); border-radius: 50%; }
+    .about-symbol svg { width: 49px; height: 49px; }
+    .about-aside small { color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; }
+    .about-copy h2 { margin: 0 0 24px; font: 400 clamp(39px, 5vw, 62px)/1.04 var(--serif); letter-spacing: -.05em; }
+    .about-copy p { max-width: 590px; color: #56554e; font-size: 16px; line-height: 1.75; }
+    .about-copy .strong { color: var(--ink); font-weight: 650; }
+    .text-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; padding-bottom: 5px; border-bottom: 1px solid currentColor; font-size: 13px; font-weight: 650; }
+
+    .services { padding-top: 95px; }
+    .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .service { min-height: 232px; padding: 26px 25px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .25s; }
+    .service:hover { background: #f0ece3; }
+    .service-num { display: flex; justify-content: space-between; color: #77756c; font-size: 11px; }
+    .service-num span:last-child { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; font-size: 17px; }
+    .service h3 { margin: 28px 0 10px; font: 400 28px/1.05 var(--serif); letter-spacing: -.025em; }
+    .service p { max-width: 330px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+
+    .journal { padding: 100px 0; }
+    .journal-panel { position: relative; overflow: hidden; min-height: 450px; display: grid; grid-template-columns: 1.04fr .96fr; border-radius: 28px; background: #252521; color: var(--paper); }
+    .journal-copy { position: relative; z-index: 1; padding: clamp(34px, 6vw, 74px); }
+    .journal .eyebrow { color: #c2bcae; }
+    .journal h2 { max-width: 570px; margin: 24px 0; font: 400 clamp(42px, 5.6vw, 72px)/1 var(--serif); letter-spacing: -.055em; }
+    .journal-copy > p { max-width: 480px; color: #c7c3b9; font-size: 15px; line-height: 1.75; }
+    .journal .pill { margin-top: 12px; border-color: var(--paper); background: var(--paper); color: var(--ink); }
+    .journal .pill:hover { background: transparent; color: var(--paper); }
+    .journal-art { position: relative; display: grid; place-items: center; min-height: 380px; background: radial-gradient(ellipse at center, rgba(245,198,76,.28), transparent 65%); }
+    .paper-stack { position: relative; width: 260px; height: 300px; transform: rotate(8deg); }
+    .sheet { position: absolute; width: 215px; height: 255px; padding: 20px; border-radius: 7px; background: #eae6dc; color: var(--ink); box-shadow: 0 20px 45px rgba(0,0,0,.22); }
+    .sheet.back { top: 14px; left: 28px; transform: rotate(-15deg); background: #d8b852; }
+    .sheet.middle { top: 24px; left: 20px; transform: rotate(-5deg); background: #f3efe5; }
+    .sheet.front { top: 30px; left: 12px; transform: rotate(6deg); }
+    .sheet-label { font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+    .sheet h3 { margin: 31px 0 12px; font: 400 30px/1 var(--serif); }
+    .sheet-line { height: 4px; margin: 8px 0; border-radius: 5px; background: #d4d0c5; }
+    .sheet-line.short { width: 65%; }
+    .sheet-stamp { position: absolute; right: 20px; bottom: 20px; display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid #918c7c; border-radius: 50%; font: italic 16px var(--serif); }
+    .journal-note { position: absolute; bottom: 30px; left: 10px; color: #d7d1c4; font: italic 14px var(--serif); transform: rotate(-8deg); }
+
+    .approach { padding-top: 40px; }
+    .approach-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 35px; margin-top: 46px; }
+    .approach-item { padding-top: 20px; border-top: 1px solid var(--line); }
+    .approach-item h3 { margin: 0 0 12px; font: 400 27px var(--serif); }
+    .approach-item p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .approach-foot { max-width: 850px; margin-top: 48px; padding: 22px 25px; border-left: 2px solid var(--yellow); background: #efebe2; color: #59584f; font-size: 14px; line-height: 1.7; }
+
+    .contact { padding: 50px 0 100px; }
+    .contact-panel { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: clamp(32px, 6vw, 72px); border-radius: 28px; background: var(--yellow); }
+    .contact-panel h2 { max-width: 670px; margin: 0 0 14px; font: 400 clamp(40px, 5.3vw, 67px)/1.02 var(--serif); letter-spacing: -.05em; }
+    .contact-panel p { max-width: 530px; margin: 0; color: #514b39; font-size: 15px; line-height: 1.65; }
+    .contact-panel .pill { flex-shrink: 0; }
+    footer { padding: 25px 0 32px; border-top: 1px solid var(--line); }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .copyright { color: var(--muted); font-size: 12px; }
+    .footer-links { display: flex; align-items: center; gap: 20px; color: #5f5e56; font-size: 12px; }
+
+    dialog { width: min(480px, calc(100% - 32px)); padding: 0; border: 0; border-radius: 22px; background: var(--paper); color: var(--ink); box-shadow: 0 25px 90px rgba(0,0,0,.25); }
+    dialog::backdrop { background: rgba(28,28,25,.48); backdrop-filter: blur(5px); }
+    .dialog-inner { padding: 35px; }
+    .dialog-close { float: right; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 50%; background: transparent; cursor: pointer; font-size: 20px; }
+    dialog h2 { margin: 20px 0 12px; font: 400 38px/1 var(--serif); letter-spacing: -.04em; }
+    dialog p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .channel-list { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin: 22px 0; }
+    .channel { display: block; padding: 12px; border: 1px solid var(--line); border-radius: 11px; font-size: 13px; }
+    a.channel { overflow-wrap: anywhere; }
+    a.channel:hover { border-color: var(--ink); }
+
+    @media (max-width: 860px) {
+      .wrap { width: min(100% - 40px, var(--max)); }
+      .hero { min-height: auto; padding: 76px 0 96px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { max-width: 600px; }
+      .hero-art { min-height: 420px; margin-top: 4px; }
+      .orbit { width: min(60vw, 380px); }
+      .system-card { width: min(90%, 410px); }
+      .about-panel { gap: 42px; }
+      .journal-panel { grid-template-columns: 1fr .8fr; }
+      .journal-art { min-width: 260px; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: calc(100% - 36px); }
+      .nav { min-height: 66px; }
+      .nav-links { display: none; }
+      .nav > .pill { min-height: 39px; padding-inline: 15px; font-size: 12px; }
+      .hero { padding-top: 58px; }
+      h1 { font-size: clamp(53px, 15vw, 78px); }
+      .hero-art { min-height: 340px; margin-inline: -8px; }
+      .system-card { padding: 16px; border-radius: 19px; }
+      .node { min-height: 58px; }
+      .node-hub { min-height: 92px; }
+      .node span { font-size: 8px; }
+      .tag-one { left: 0; top: 5%; }
+      .tag-two { right: -1%; bottom: 7%; }
+      section { padding: 76px 0; }
+      .section-heading { display: block; margin-bottom: 30px; }
+      .section-heading p { margin-top: 18px; }
+      .about { padding-top: 35px; }
+      .about-panel { grid-template-columns: 1fr; gap: 30px; padding: 30px 24px; border-radius: 21px; }
+      .about-aside { min-height: 90px; flex-direction: row; align-items: center; }
+      .about-symbol { width: 68px; height: 68px; }
+      .about-symbol svg { width: 38px; height: 38px; }
+      .about-copy h2 { font-size: 43px; }
+      .service-grid { grid-template-columns: 1fr 1fr; }
+      .service { min-height: 220px; padding: 20px 15px; }
+      .service h3 { margin-top: 22px; font-size: 24px; }
+      .service p { font-size: 12px; }
+      .journal { padding: 60px 0; }
+      .journal-panel { grid-template-columns: 1fr; }
+      .journal-copy { padding: 34px 26px 15px; }
+      .journal-art { min-height: 330px; }
+      .approach-grid { grid-template-columns: 1fr; gap: 23px; margin-top: 30px; }
+      .contact { padding: 24px 0 70px; }
+      .contact-panel { padding: 34px 25px; border-radius: 21px; }
+      .footer-row { align-items: flex-start; flex-direction: column; }
+      .footer-links { flex-wrap: wrap; gap: 14px; }
+      .dialog-inner { padding: 27px 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="The Sidekicks — home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12c2.2-4.4 5-6.6 7-6.6s4.8 2.2 7 6.6c-2.2 4.4-5 6.6-7 6.6S7.2 16.4 5 12Z"/><path d="M8.2 12h7.6M12 8.2v7.6"/></svg></span>
+        <span>THE SIDEKICKS</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#about">About</a><a href="#services">Services</a><a href="#journal">Journal</a>
+      </nav>
+      <button class="pill" data-contact>Contact us <span class="arrow" aria-hidden="true">↗</span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">The Sidekicks · digital support for business</span>
+          <h1 id="hero-title">Your external <em>digital team</em></h1>
+          <p class="hero-copy">We bring the digital side of your business into order. Websites, content, social media, maps, analytics and digital business processes — everything you need to present your business clearly online.</p>
+          <div class="hero-actions"><a class="pill" href="#services">How we can help <span class="arrow" aria-hidden="true">↓</span></a><a class="pill pill-light" href="#about">About us</a></div>
+        </div>
+        <div class="hero-art" aria-label="Six areas of digital work brought together in one system">
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="system-card">
+            <div class="card-top"><span>Digital, brought together</span><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <div class="diagram">
+              <svg class="connector" viewBox="0 0 300 180" fill="none" aria-hidden="true"><path d="M45 45 145 90 255 45M45 135l100-45 110 45M45 45v90M255 45v90" stroke="#aaa48f" stroke-width="1" stroke-dasharray="3 4"/></svg>
+              <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 5.5h16v13H4zM4 9h16M8 7.2h.1M10.5 7.2h.1"/></svg><span>Websites</span></div>
+              <div class="node node-hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 12c2.2-4.4 5-6.6 7-6.6s4.8 2.2 7 6.6c-2.2 4.4-5 6.6-7 6.6S7.2 16.4 5 12Z"/><path d="M8.2 12h7.6M12 8.2v7.6"/></svg><span>One connected system</span></div>
+              <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.3"/></svg><span>Maps</span></div>
+              <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M5 4h14v16H5zM8 8h8M8 12h5M8 16h7"/></svg><span>Content</span></div>
+              <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 18V6m0 12h16M7 15l4-4 3 2 5-6"/></svg><span>Analytics</span></div>
+            </div>
+          </div>
+          <div class="float-tag tag-one"><span>✳</span>Everything works together</div>
+          <div class="float-tag tag-two"><span>↗</span>Clear and organised</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap about-panel">
+        <div class="about-aside"><div class="about-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.35"><path d="M8 24c4.5-9 10-13 16-13s11.5 4 16 13c-4.5 9-10 13-16 13S12.5 33 8 24Z"/><path d="M16 24h16M24 16v16"/></svg></div><small>Here to help you make sense of it</small></div>
+        <div class="about-copy">
+          <span class="eyebrow">About us</span>
+          <h2>Not an agency.<br>Not a web studio.</h2>
+          <p class="strong">We’re your external digital team.</p>
+          <p>You know your business better than we do. We help you work out how to present it online and bring your digital work into order.</p>
+          <p>You decide what you want to say and achieve. We help organise the information, choose the right tools and put the work in order.</p>
+          <a class="text-link" href="#approach">How we work <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="eyebrow">How we can help</span><h2>Everything your business needs online</h2></div><p>We help create and organise the digital tools and processes your business needs.</p></div>
+        <div class="service-grid">
+          <article class="service"><div class="service-num"><span>01 / CONTENT</span><span aria-hidden="true">↗</span></div><h3>Content</h3><p>Writing and visuals. We can work with your materials or help create them from scratch.</p></article>
+          <article class="service"><div class="service-num"><span>02 / SITES</span><span aria-hidden="true">↗</span></div><h3>Websites</h3><p>Simple business websites, landing pages, multi-page sites, catalogues and online shops. Blog creation and management are available on request.</p></article>
+          <article class="service"><div class="service-num"><span>03 / SOCIAL</span><span aria-hidden="true">↗</span></div><h3>Social media</h3><p>Profile setup and presentation, with a visual and content foundation. Ongoing management is available on request.</p></article>
+          <article class="service"><div class="service-num"><span>04 / MAPS</span><span aria-hidden="true">↗</span></div><h3>Maps</h3><p>We create and update your business profiles on map services available in your country.</p></article>
+          <article class="service"><div class="service-num"><span>05 / PROCESSES</span><span aria-hidden="true">↗</span></div><h3>Business processes</h3><p>We help digitise and organise tasks, customer work, finances, documents and communication.</p></article>
+          <article class="service"><div class="service-num"><span>06 / ANALYTICS</span><span aria-hidden="true">↗</span></div><h3>Analytics</h3><p>We identify and summarise key measures across your website, social media, map listings and business.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="journal" id="journal">
+      <div class="wrap journal-panel">
+        <div class="journal-copy">
+          <span class="eyebrow">Practical insights · research · updates</span>
+          <h2>Practical knowledge you can use</h2>
+          <p>We share what we learn, work through real business challenges and test ideas in practice. Use our guides yourself, share them with another supplier, or ask us to put the ideas into action.</p>
+          <a class="pill" href="https://thesidekicks.hashnode.dev" target="_blank" rel="noopener noreferrer">Read the journal <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="journal-art" aria-hidden="true">
+          <div class="paper-stack"><div class="sheet back"></div><div class="sheet middle"></div><div class="sheet front"><div class="sheet-label">Sidekicks notes</div><h3>Tested<br>in practice</h3><div class="sheet-line"></div><div class="sheet-line"></div><div class="sheet-line short"></div><div class="sheet-stamp">OK</div></div></div>
+          <span class="journal-note">keeping what’s useful, updating what matters</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach" id="approach">
+      <div class="wrap">
+        <div class="section-heading"><div><span class="eyebrow">About our articles</span><h2>Experience, observations and honest conclusions</h2></div><p>We’re not here to publish content for its own sake. We share ideas grounded in experience, observation or research.</p></div>
+        <div class="approach-grid">
+          <article class="approach-item"><h3>Practice</h3><p>Real challenges, tools and solutions that we try in our work.</p></article>
+          <article class="approach-item"><h3>Research</h3><p>Ideas, experiments and observations, including what worked and what didn’t.</p></article>
+          <article class="approach-item"><h3>Keeping things current</h3><p>We update our articles when tools or solutions change, or when we learn a better way to do things.</p></article>
+        </div>
+        <div class="approach-foot">What we write isn’t universal advice. We explain what our conclusions are based on, and revisit our articles when we find a better solution.</div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-panel">
+        <div><span class="eyebrow">Have a project in mind?</span><h2>Let’s talk about working together</h2><p>Get in touch to discuss which digital tools and processes could work for your business.</p></div>
+        <button class="pill" data-contact>Contact us <span class="arrow" aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-row">
+        <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12c2.2-4.4 5-6.6 7-6.6s4.8 2.2 7 6.6c-2.2 4.4-5 6.6-7 6.6S7.2 16.4 5 12Z"/><path d="M8.2 12h7.6M12 8.2v7.6"/></svg></span><span>THE SIDEKICKS</span></a>
+        <span class="copyright">© The Sidekicks, 2026</span>
+        <div class="footer-links" aria-label="Social media"><a href="https://www.facebook.com/thesidekicks" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.instagram.com/the_sidekicks_eu/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.threads.com/@the_sidekicks_eu" target="_blank" rel="noopener noreferrer">Threads</a><a href="mailto:thesidekicks.studio@gmail.com">E-mail</a></div>
+      </div>
+      <!-- Before publishing, add verified links for legal information. -->
+    </div>
+  </footer>
+
+  <dialog id="contact-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-inner">
+      <button class="dialog-close" aria-label="Close dialog" data-close>×</button>
+      <span class="eyebrow">The Sidekicks</span>
+      <h2 id="dialog-title">Contact us</h2>
+      <p>Choose whichever way is easiest for you:</p>
+      <div class="channel-list"><div class="channel">WhatsApp</div><div class="channel">Telegram</div><div class="channel">Facebook Messenger</div><a class="channel" href="mailto:thesidekicks.studio@gmail.com">thesidekicks.studio@gmail.com</a></div>
+      <!-- WhatsApp, Telegram and Messenger links were not included in the source materials. Add them here before publishing. -->
+    </div>
+  </dialog>
+  <script>
+    const contactDialog = document.querySelector('#contact-dialog');
+    document.querySelectorAll('[data-contact]').forEach((button) => button.addEventListener('click', () => contactDialog.showModal()));
+    document.querySelector('[data-close]').addEventListener('click', () => contactDialog.close());
+    contactDialog.addEventListener('click', (event) => { if (event.target === contactDialog) contactDialog.close(); });
+    document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && contactDialog.open) contactDialog.close(); });
+  </script>
+</body>
+</html>
